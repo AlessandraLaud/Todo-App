@@ -33,17 +33,14 @@ class CreateTodoDialog extends StatelessWidget {
             alignment: MainAxisAlignment.end,
             mainAxisSize: MainAxisSize.min,
             children: [
-              FlatButton(
-                child: Text('Cancel'),
-                textColor: Colors.red,
+              TextButton(
                 onPressed: () {
                   Navigator.pop(context, true);
                   controller.clear();
                 },
+                child: Text('Cancel', style: TextStyle(color: Colors.red)),
               ),
-              FlatButton(
-                child: Text('Create'),
-                textColor: Colors.green,
+              TextButton(
                 onPressed: () {
                   Navigator.pop(context, true);
                   final Todo todo = Todo(title: controller.text);
@@ -51,7 +48,8 @@ class CreateTodoDialog extends StatelessWidget {
                       .addTodo(todo);
                   controller.clear();
                 },
-              ),
+                child: Text('Create', style: TextStyle(color: Colors.green)),
+              )
             ],
           )
         ]);

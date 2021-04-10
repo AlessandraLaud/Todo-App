@@ -26,25 +26,27 @@ class _AllTodosTabState extends State<AllTodosTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Consumer<TodosProvider>(
-          builder: (context, todos, child) => todos.allTodos.length == 0
+    return Consumer<TodosProvider>(builder: (context, provider, child) {
+      return Scaffold(
+        body: Center(
+          child: provider.allTodos.length == 0
               ? Text("You have nothing todo :)",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey[800]))
-              : TodoList(todos: todos.allTodos),
+              : TodoList(todos: provider.allTodos),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          showDialog(
-            context: context,
-            child: CreateTodoDialog(controller: _controller),
-          );
-        },
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return CreateTodoDialog(controller: _controller);
+                });
+          },
+        ),
+      );
+    });
   }
 }
