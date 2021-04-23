@@ -9,11 +9,14 @@ class CompletedTodosTab extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Consumer<TodosProvider>(
-          builder: (context, todos, child) => todos.allTodos.length == 0
+          builder: (context, todos, child) => todos.completedTodos.length == 0
               ? Text("You have no completed todos",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey[800]))
-              : TodoList(todos: todos.completedTodos),
+              : TodoList(
+                  todos: todos.completedTodos,
+                  showCheckbox: false,
+                ),
         ),
       ),
     );
